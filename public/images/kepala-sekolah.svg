@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-label="Foto Kepala Sekolah">
+    <!-- Placeholder pas foto formal 3:4 -->
+    <defs>
+        <linearGradient id="latar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#eef1f6"/>
+            <stop offset="1" stop-color="#c3cdda"/>
+        </linearGradient>
+        <radialGradient id="cahaya" cx="0.5" cy="0.32" r="0.75">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <rect width="300" height="400" fill="url(#latar)"/>
+    <rect width="300" height="400" fill="url(#cahaya)"/>
+
+    <!-- Bahu dan jas -->
+    <path d="M150 220c-66 0-110 42-118 102-2 16 0 78 0 78h236s2-62 0-78c-8-60-52-102-118-102z" fill="#26313f"/>
+    <!-- Kemeja -->
+    <path d="M150 220l-27 15 27 82 27-82z" fill="#f7f9fb"/>
+    <!-- Dasi -->
+    <path d="M150 240l-10 11 10 52 10-52z" fill="#b45309"/>
+    <path d="M150 233l-7 7 7 8 7-8z" fill="#92400e"/>
+    <!-- Kerah jas -->
+    <path d="M123 234l-23 17 34 58 16-70zM177 234l23 17-34 58-16-70z" fill="#1a2430"/>
+    <!-- Saku dada -->
+    <rect x="196" y="316" width="26" height="6" rx="2" fill="#1a2430"/>
+
+    <!-- Leher -->
+    <path d="M132 184h36v28c0 11-8 20-18 20s-18-9-18-20z" fill="#c9a27f"/>
+    <!-- Telinga -->
+    <ellipse cx="101" cy="142" rx="9" ry="13" fill="#d0aa8a"/>
+    <ellipse cx="199" cy="142" rx="9" ry="13" fill="#d0aa8a"/>
+    <!-- Kepala -->
+    <ellipse cx="150" cy="138" rx="50" ry="58" fill="#d9b697"/>
+    <!-- Rambut rapi -->
+    <path d="M100 130c-3-46 26-66 50-66s53 20 50 66c0 5-1 9-2 12-3-30-21-42-48-42s-45 12-48 42c-1-3-2-7-2-12z" fill="#212d3a"/>
+</svg>

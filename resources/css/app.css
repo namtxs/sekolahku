@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Heading sans tegas ala website sekolah Indonesia */
+    --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Identitas warna mengikuti kombinasi website sekolah Indonesia (tema
+ * sky_light CMS Sekolahku): biru tua #014585 (header/footer), biru cerah
+ * #0f6fc7 (navbar/tombol), latar halaman #eaf3ff, aksen emas amber-*.
+ */
+@theme {
+    --color-primary-50: #eaf3ff;
+    --color-primary-100: #d5e7fb;
+    --color-primary-200: #b0d1f4;
+    --color-primary-300: #82b4e9;
+    --color-primary-400: #4c92dc;
+    --color-primary-500: #2379cf;
+    --color-primary-600: #0f6fc7;
+    --color-primary-700: #0a58a3;
+    --color-primary-800: #014585;
+    --color-primary-900: #023a6e;
+    --color-primary-950: #062b50;
+}
+
+/*
+ * Prose (konten HTML dari RichEditor): selaraskan @tailwindcss/typography
+ * dengan palet biru + aksen emas. Berlaku untuk semua elemen .prose.
+ */
+.prose {
+    --tw-prose-links: var(--color-primary-700);
+    --tw-prose-bullets: var(--color-primary-400);
+    --tw-prose-counters: var(--color-primary-700);
+    --tw-prose-quote-borders: var(--color-amber-400);
+    --tw-prose-th-borders: var(--color-slate-300);
+    --tw-prose-td-borders: var(--color-slate-200);
+}
+
+.prose a {
+    font-weight: 600;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+}
+
+.prose a:hover {
+    color: var(--color-primary-900);
+}
+
+/* Blockquote: border emas + latar biru muda, tanpa tanda kutip otomatis */
+.prose blockquote {
+    background-color: var(--color-primary-50);
+    border-start-end-radius: var(--radius-sm);
+    border-end-end-radius: var(--radius-sm);
+    padding: 0.75rem 1.25rem;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+    content: none;
+}
+
+/*
+ * Badan artikel (detail berita & halaman statis): ukuran ~17px dengan jarak
+ * baris lega agar nyaman dibaca; elemen turunan prose ikut menyesuaikan
+ * karena berbasis em. Tabel panjang bisa digulir horizontal.
+ */
+.prose-article {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+}
+
+.prose-article img {
+    border-radius: var(--radius-sm);
+}
+
+.prose-article table {
+    display: block;
+    overflow-x: auto;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+::selection {
+    background-color: var(--color-primary-800);
+    color: var(--color-white);
+}
+
+/* Pola titik halus untuk section berlatar gelap */
+.pattern-dots {
+    background-image: radial-gradient(circle, rgb(255 255 255 / 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
+/* Ticker pengumuman berjalan di beranda */
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-ticker {
+    animation: ticker-scroll 40s linear infinite;
+}
+
+.animate-ticker:hover {
+    animation-play-state: paused;
+}
