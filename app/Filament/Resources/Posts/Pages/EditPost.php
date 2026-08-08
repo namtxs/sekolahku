@@ -23,8 +23,8 @@ class EditPost extends EditRecord
     {
         return [
             DeleteAction::make(),
-            ForceDeleteAction::make(),
-            RestoreAction::make(),
+            RestoreAction::make()->label('Pulihkan'),
+            ForceDeleteAction::make()->label('Hapus Permanen'),
         ];
     }
 }
