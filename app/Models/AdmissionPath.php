@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 #[Fillable([
     'academic_year_id',
@@ -25,7 +27,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class AdmissionPath extends Model
 {
     /** @use HasFactory<AdmissionPathFactory> */
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     public function academicYear(): BelongsTo
     {

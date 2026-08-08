@@ -59,6 +59,10 @@ class RolePermissionSeeder extends Seeder
             }
         }
 
+        // Log aktivitas hanya butuh satu permission baca (read-only, khusus Admin).
+        Permission::findOrCreate('activity.view_any', 'web');
+        $allPermissions[] = 'activity.view_any';
+
         $contentModules = array_diff($this->modules, ['users', 'settings']);
         $contentPermissions = array_values(array_filter(
             $allPermissions,

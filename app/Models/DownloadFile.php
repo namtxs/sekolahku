@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -15,7 +17,20 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class DownloadFile extends Model implements HasMedia
 {
     /** @use HasFactory<DownloadFileFactory> */
-    use HasFactory, HasSlug, InteractsWithMedia;
+    use HasFactory, HasSlug, InteractsWithMedia, LogsActivity;
+
+    /**
+     * Kolom `download_count` dikecualikan agar increment penghitung unduhan
+     * tidak membanjiri log aktivitas.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logExcept(['download_count'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     public function slugSourceColumn(): string
     {

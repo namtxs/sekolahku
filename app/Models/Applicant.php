@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -39,7 +41,19 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Applicant extends Model implements HasMedia
 {
     /** @use HasFactory<ApplicantFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, LogsActivity;
+
+    /**
+     * Jejak audit PPDB fokus pada perubahan status verifikasi/keputusan,
+     * bukan seluruh biodata pendaftar.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['status', 'verification_note'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     public const STATUS_PENDING = 'pending';
 

@@ -6,10 +6,22 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 #[Fillable(['title', 'type', 'area', 'content', 'settings', 'is_active', 'sort_order'])]
 class Widget extends Model
 {
+    use LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
+
     /** Kunci cache data widget publik per area (di-flush saat widget berubah). */
     public const CACHE_KEYS = [
         'sidebar' => 'theme.widgets.sidebar',

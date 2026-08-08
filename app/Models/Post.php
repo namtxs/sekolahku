@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -35,7 +37,20 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Post extends Model implements HasMedia
 {
     /** @use HasFactory<PostFactory> */
-    use HasFactory, HasSlug, InteractsWithMedia, SoftDeletes;
+    use HasFactory, HasSlug, InteractsWithMedia, LogsActivity, SoftDeletes;
+
+    /**
+     * Kolom `views` dikecualikan agar increment penghitung kunjungan
+     * tidak membanjiri log aktivitas.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logExcept(['views'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     public function slugSourceColumn(): string
     {

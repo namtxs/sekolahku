@@ -9,12 +9,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 #[Fillable(['post_id', 'parent_id', 'name', 'email', 'body', 'status', 'ip_address'])]
 class Comment extends Model
 {
     /** @use HasFactory<CommentFactory> */
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+    /**
+     * Hanya perubahan status (moderasi) yang penting untuk jejak audit.
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['status'])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     public function post(): BelongsTo
     {
