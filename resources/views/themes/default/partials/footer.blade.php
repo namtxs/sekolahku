@@ -10,37 +10,48 @@
     ], fn ($item) => filled($item[0]));
 @endphp
 
-<footer class="border-t-4 border-amber-400 bg-primary-800 text-sm text-primary-100">
+<footer class="border-t-[3px] border-amber-400 bg-primary-800 text-sm text-primary-100">
     {{-- Footer utama: 3 kolom ala website sekolah --}}
-    <div class="mx-auto grid max-w-6xl gap-x-10 gap-y-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
+    <div class="mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-4 py-11 sm:px-6 md:grid-cols-3 lg:px-8 lg:py-12">
         {{-- Hubungi Kami --}}
         <div>
-            <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-base font-bold text-white">
+            <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
                 Hubungi Kami
-                <span class="absolute -bottom-0.5 left-0 w-1/3 border-b-2 border-white" aria-hidden="true"></span>
+                <span class="absolute -bottom-0.5 left-0 w-12 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
-            <p class="font-semibold text-white">{{ $siteName }}</p>
-            @if(filled($settings->jenjang ?? null))
-                <p class="mt-0.5 text-xs text-primary-200">{{ $settings->jenjang }}@if(filled($settings->npsn ?? null)) &sdot; NPSN {{ $settings->npsn }}@endif</p>
+            <p class="font-heading text-[15px] font-semibold leading-snug text-white">{{ $siteName }}</p>
+            @if(filled($settings->jenjang ?? null) || filled($settings->npsn ?? null))
+                <p class="mt-1 text-xs leading-relaxed text-primary-200">
+                    @if(filled($settings->jenjang ?? null)){{ $settings->jenjang }}@endif
+                    @if(filled($settings->npsn ?? null))
+                        @if(filled($settings->jenjang ?? null)) <span aria-hidden="true">&sdot;</span> @endif
+                        NPSN {{ $settings->npsn }}
+                    @endif
+                </p>
             @endif
-            {{-- Item kontak ber-ikon dengan rata kiri seragam --}}
-            <ul class="mt-4 space-y-3 leading-relaxed">
+            <ul class="mt-5 space-y-3.5 leading-relaxed">
                 @if(filled($settings->address ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.112.02.31-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9.5A7 7 0 1 0 3 9.5c0 2.993 1.698 5.488 3.355 7.084a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 1.039.573l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd"/></svg>
-                        <span>{{ $settings->address }}</span>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-sm bg-primary-900/50 text-amber-400">
+                            <svg class="size-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.112.02.31-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9.5A7 7 0 1 0 3 9.5c0 2.993 1.698 5.488 3.355 7.084a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 1.039.573l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd"/></svg>
+                        </span>
+                        <span class="pt-0.5">{{ $settings->address }}</span>
                     </li>
                 @endif
                 @if(filled($settings->phone ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd"/></svg>
-                        <a href="tel:{{ preg_replace('/\s+/', '', $settings->phone) }}" class="transition hover:text-amber-300">{{ $settings->phone }}</a>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-sm bg-primary-900/50 text-amber-400">
+                            <svg class="size-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd"/></svg>
+                        </span>
+                        <a href="tel:{{ preg_replace('/\s+/', '', $settings->phone) }}" class="pt-0.5 transition hover:text-amber-300">{{ $settings->phone }}</a>
                     </li>
                 @endif
                 @if(filled($settings->email ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
-                        <a href="mailto:{{ $settings->email }}" class="transition hover:text-amber-300">{{ $settings->email }}</a>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-sm bg-primary-900/50 text-amber-400">
+                            <svg class="size-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
+                        </span>
+                        <a href="mailto:{{ $settings->email }}" class="break-all pt-0.5 transition hover:text-amber-300">{{ $settings->email }}</a>
                     </li>
                 @endif
             </ul>
@@ -48,15 +59,15 @@
 
         {{-- Tags --}}
         <div>
-            <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-base font-bold text-white">
+            <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
                 Tags
-                <span class="absolute -bottom-0.5 left-0 w-1/3 border-b-2 border-white" aria-hidden="true"></span>
+                <span class="absolute -bottom-0.5 left-0 w-12 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
             @if(! empty($footerTags))
-                <div class="flex flex-wrap gap-1.5">
+                <div class="flex flex-wrap gap-2">
                     @foreach($footerTags as $tag)
                         <a href="{{ $tag['url'] }}"
-                            class="rounded-sm border border-white/30 px-2.5 py-1.5 text-xs uppercase leading-none text-primary-100 transition hover:border-amber-400 hover:text-amber-300">
+                            class="rounded-sm border border-white/25 bg-primary-900/25 px-2.5 py-1.5 text-[11px] font-medium uppercase leading-none tracking-wide text-primary-100 transition hover:border-amber-400 hover:bg-primary-900/50 hover:text-amber-300">
                             {{ $tag['name'] }}
                         </a>
                     @endforeach
@@ -68,34 +79,47 @@
 
         {{-- Ikuti Kami --}}
         <div>
-            <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-base font-bold text-white">
+            <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
                 Ikuti Kami
-                <span class="absolute -bottom-0.5 left-0 w-1/3 border-b-2 border-white" aria-hidden="true"></span>
+                <span class="absolute -bottom-0.5 left-0 w-12 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
             @if($footerSocials !== [])
                 <div class="flex flex-wrap gap-2.5">
                     @foreach($footerSocials as $label => [$url, $bg, $path])
                         <a href="{{ $url }}" target="_blank" rel="noopener" aria-label="{{ $label }}" title="{{ $label }}"
-                            class="{{ $bg }} flex size-10 items-center justify-center rounded-full text-white transition hover:opacity-80">
-                            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24"><path d="{{ $path }}"/></svg>
+                            class="{{ $bg }} flex size-10 items-center justify-center rounded-full text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90 hover:shadow-md">
+                            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ $path }}"/></svg>
                         </a>
                     @endforeach
                 </div>
+                <p class="mt-4 text-xs leading-relaxed text-primary-200">Ikuti update kegiatan dan pengumuman sekolah di media sosial resmi kami.</p>
             @else
                 <p class="text-primary-200">Media sosial belum diatur.</p>
             @endif
         </div>
     </div>
 
-    {{-- Bar copyright biru cerah ala referensi --}}
-    <div class="border-t border-white/25 bg-primary-600">
-        <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-1 px-4 py-3 text-xs text-white sm:flex-row sm:px-6 lg:px-8">
-            <p>Copyright &copy; {{ now()->year }} <a href="{{ route('home') }}" class="font-semibold hover:text-amber-300">{{ $siteName }}</a>. All rights reserved.</p>
-            <p>
-                <a href="{{ route('sitemap') }}" class="hover:text-amber-300">Peta Situs</a>
-                <span aria-hidden="true" class="mx-1.5">&middot;</span>
-                <a href="{{ route('feed') }}" class="hover:text-amber-300">RSS</a>
-            </p>
+    {{-- Bar copyright --}}
+    <div class="border-t border-white/20 bg-primary-900/40">
+        <div class="bg-primary-600">
+            <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2.5 px-4 py-3.5 text-xs text-white sm:flex-row sm:gap-3 sm:px-6 lg:px-8">
+                <p class="text-center leading-relaxed sm:text-left">
+                    Copyright &copy; {{ now()->year }}
+                    <a href="{{ route('home') }}" class="font-semibold transition hover:text-amber-300">{{ $siteName }}</a>.
+                    All rights reserved.
+                </p>
+                <nav class="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-primary-50" aria-label="Tautan footer">
+                    <a href="{{ route('home') }}" class="px-1.5 py-0.5 transition hover:text-amber-300">Beranda</a>
+                    <span class="text-white/35" aria-hidden="true">&middot;</span>
+                    <a href="{{ route('contact.show') }}" class="px-1.5 py-0.5 transition hover:text-amber-300">Kontak</a>
+                    <span class="text-white/35" aria-hidden="true">&middot;</span>
+                    <a href="{{ route('ppdb.index') }}" class="px-1.5 py-0.5 transition hover:text-amber-300">PPDB</a>
+                    <span class="text-white/35" aria-hidden="true">&middot;</span>
+                    <a href="{{ route('sitemap') }}" class="px-1.5 py-0.5 transition hover:text-amber-300">Peta Situs</a>
+                    <span class="text-white/35" aria-hidden="true">&middot;</span>
+                    <a href="{{ route('feed') }}" class="px-1.5 py-0.5 transition hover:text-amber-300">RSS</a>
+                </nav>
+            </div>
         </div>
     </div>
 </footer>
