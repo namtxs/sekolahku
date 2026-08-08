@@ -102,6 +102,29 @@ DB_CONNECTION=mysql
 DB_DATABASE=sekolahku_v2
 ```
 
+## Konfigurasi Email (Produksi)
+
+Aplikasi mengirim notifikasi email (komentar baru, pesan kontak, pendaftar PPDB, dan hasil keputusan PPDB) melalui **antrean** (`QUEUE_CONNECTION=database`). Alamat email tujuan admin diambil dari **Pengaturan Sekolah → Email** di panel admin (bila kosong, notifikasi ke admin otomatis dilewati).
+
+Di lingkungan dev, `MAIL_MAILER=log` (email hanya ditulis ke log). Untuk produksi, gunakan SMTP:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.penyedia-anda.com
+MAIL_PORT=587
+MAIL_USERNAME=user@sekolah.sch.id
+MAIL_PASSWORD=rahasia
+MAIL_SCHEME=null            # atau tls sesuai penyedia
+MAIL_FROM_ADDRESS="noreply@sekolah.sch.id"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+Karena email dikirim via antrean database, jalankan worker antrean di produksi (mis. via Supervisor/systemd):
+
+```bash
+php artisan queue:work --tries=3
+```
+
 ## Struktur Proyek (Ringkas)
 
 | Lokasi | Isi |

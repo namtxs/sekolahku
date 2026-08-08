@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewContactMessageAdminMail;
 use App\Models\ContactMessage;
+use App\Support\SiteMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -36,7 +39,12 @@ class ContactController extends Controller
             'message' => 'pesan',
         ]);
 
-        ContactMessage::create([...$data, 'is_read' => false]);
+        $message = ContactMessage::create([...$data, 'is_read' => false]);
+
+        // Beri tahu admin via antrean; skip bila email sekolah belum diisi.
+        if ($adminEmail = SiteMail::adminEmail()) {
+            Mail::to($adminEmail)->queue(new NewContactMessageAdminMail($message));
+        }
 
         return redirect()
             ->route('contact.show')

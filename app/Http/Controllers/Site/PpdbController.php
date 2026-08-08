@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApplicantRequest;
+use App\Mail\NewApplicantAdminMail;
 use App\Models\AcademicYear;
 use App\Models\AdmissionPath;
 use App\Models\Applicant;
 use App\Settings\GeneralSettings;
+use App\Support\SiteMail;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PpdbController extends Controller
 {
@@ -68,6 +71,12 @@ class PpdbController extends Controller
 
             return $applicant;
         });
+
+        // Beri tahu admin via antrean (setelah transaksi commit);
+        // skip bila email sekolah belum diisi.
+        if ($adminEmail = SiteMail::adminEmail()) {
+            Mail::to($adminEmail)->queue(new NewApplicantAdminMail($applicant));
+        }
 
         // Akses halaman bukti sesaat setelah mendaftar; akses
         // permanen tersedia lewat halaman cek status.

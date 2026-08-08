@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewCommentAdminMail;
 use App\Models\Post;
+use App\Support\SiteMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -38,11 +41,16 @@ class CommentController extends Controller
             'body' => 'komentar',
         ]);
 
-        $post->comments()->create([
+        $comment = $post->comments()->create([
             ...$data,
             'status' => 'pending',
             'ip_address' => $request->ip(),
         ]);
+
+        // Beri tahu admin via antrean; skip bila email sekolah belum diisi.
+        if ($adminEmail = SiteMail::adminEmail()) {
+            Mail::to($adminEmail)->queue(new NewCommentAdminMail($comment));
+        }
 
         return redirect()
             ->to($redirect)

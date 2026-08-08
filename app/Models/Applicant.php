@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Mail\ApplicantDecisionMail;
 use Database\Factories\ApplicantFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Image\Enums\Fit;
@@ -79,6 +81,25 @@ class Applicant extends Model implements HasMedia
                     $applicant->path()->firstOrFail(),
                 );
             }
+        });
+
+        // Email hasil keputusan ke pendaftar (bila punya email), apa pun
+        // jalur pemanggilannya (aksi panel, tinker, dsb.) — via antrean
+        // agar gagal kirim tidak mematikan request.
+        static::updated(function (Applicant $applicant) {
+            if (! $applicant->wasChanged('status')) {
+                return;
+            }
+
+            if (! in_array($applicant->status, [self::STATUS_ACCEPTED, self::STATUS_REJECTED], true)) {
+                return;
+            }
+
+            if (blank($applicant->email)) {
+                return;
+            }
+
+            Mail::to($applicant->email)->queue(new ApplicantDecisionMail($applicant));
         });
     }
 
