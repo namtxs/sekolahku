@@ -22,7 +22,22 @@
             <div class="px-6 py-7">
                 <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Nomor Pendaftaran</p>
                 <p class="mt-2 font-heading text-4xl font-bold tracking-wider text-primary-800 sm:text-5xl">{{ $applicant->registration_number }}</p>
-                <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-600">
+
+                {{-- Tombol salin nomor ke clipboard --}}
+                <div x-data="{ copied: false }" class="mt-3">
+                    <button type="button"
+                        @click="navigator.clipboard.writeText('{{ $applicant->registration_number }}').then(() => { copied = true; setTimeout(() => copied = false, 2000) })"
+                        class="inline-flex items-center gap-1.5 rounded-sm border border-slate-300 px-3.5 py-1.5 text-xs font-bold text-slate-600 transition hover:border-primary-600 hover:text-primary-700">
+                        <svg x-show="! copied" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184"/></svg>
+                        <svg x-cloak x-show="copied" class="size-3.5 text-green-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+                        <span x-text="copied ? 'Tersalin!' : 'Salin Nomor'">Salin Nomor</span>
+                    </button>
+                </div>
+
+                <p class="mt-4 text-sm text-slate-600">
+                    Anda pendaftar ke-<strong>{{ $applicant->queueNumber() }}</strong> pada Jalur {{ $applicant->path->name }}.
+                </p>
+                <p class="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-600">
                     Catat atau unduh bukti pendaftaran ini. Nomor pendaftaran beserta tanggal lahir
                     digunakan untuk mengecek status seleksi Anda.
                 </p>
@@ -66,7 +81,8 @@
         <p class="mt-6 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800">
             <strong>Langkah selanjutnya:</strong> panitia akan memverifikasi berkas Anda. Pantau perkembangan
             status melalui halaman <a href="{{ route('ppdb.status') }}" class="font-bold underline hover:text-amber-900">Cek Status</a>
-            menggunakan nomor pendaftaran dan tanggal lahir.
+            menggunakan nomor pendaftaran dan tanggal lahir. Hasil seleksi diumumkan setelah pendaftaran
+            Jalur {{ $applicant->path->name }} ditutup pada <strong>{{ tanggal_id($applicant->path->closes_at, 'j F Y') }}</strong>.
         </p>
     </div>
 @endsection

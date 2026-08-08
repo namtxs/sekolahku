@@ -60,6 +60,7 @@
                             <p class="font-heading text-lg font-bold text-slate-900">{{ $applicant->name }}</p>
                             <p class="mt-0.5 text-sm text-slate-500">
                                 {{ $applicant->registration_number }} &middot; Jalur {{ $applicant->path->name }} &middot; PPDB {{ $applicant->path->academicYear->name }}
+                                &middot; Pendaftar ke-{{ $applicant->queueNumber() }}
                             </p>
                         </div>
                         @php($badge = match ($applicant->status) {
@@ -115,6 +116,14 @@
                             <p class="font-bold">Catatan panitia:</p>
                             <p class="mt-1">{{ $applicant->verification_note }}</p>
                         </div>
+                    @endif
+
+                    @if(! $applicant->decided_at)
+                        <p class="mt-5 rounded-sm border border-sky-200 bg-sky-50 px-4 py-3 text-sm leading-relaxed text-sky-800">
+                            Hasil seleksi diumumkan di halaman ini setelah pendaftaran Jalur {{ $applicant->path->name }}
+                            ditutup pada <strong>{{ tanggal_id($applicant->path->closes_at, 'j F Y') }}</strong>.
+                            Silakan cek kembali secara berkala.
+                        </p>
                     @endif
 
                     <div class="mt-6 border-t border-slate-200 pt-5">

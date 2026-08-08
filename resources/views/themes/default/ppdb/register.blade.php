@@ -17,7 +17,17 @@
         'breadcrumbs' => ['PPDB' => route('ppdb.index'), 'Jalur '.$path->name => null],
     ])
 
-    <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+        {{-- Indikator langkah: ringkasan 4 bagian formulir --}}
+        <ol class="mb-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3" aria-label="Langkah pengisian formulir">
+            @foreach(['Data Diri', 'Orang Tua/Wali', 'Sekolah & Nilai', 'Unggah Berkas'] as $stepIndex => $stepLabel)
+                <li class="flex items-center gap-2.5 rounded-sm border border-slate-300 bg-white px-3.5 py-2.5 shadow-sm">
+                    <span class="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary-600 text-xs font-bold text-white">{{ $stepIndex + 1 }}</span>
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-700">{{ $stepLabel }}</span>
+                </li>
+            @endforeach
+        </ol>
+
         <form action="{{ route('ppdb.store', $path->slug) }}" method="post" enctype="multipart/form-data"
             class="rounded-sm border border-slate-300 bg-white shadow-sm">
             @csrf
@@ -52,8 +62,9 @@
                             <input type="text" id="name" name="name" value="{{ old('name') }}" required class="{{ $inputClass }}">
                         </div>
                         <div>
-                            <label for="nisn" class="{{ $labelClass }}">NISN (10 digit) <span class="text-red-500">*</span></label>
-                            <input type="text" id="nisn" name="nisn" value="{{ old('nisn') }}" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" class="{{ $inputClass }}">
+                            <label for="nisn" class="{{ $labelClass }}">NISN <span class="text-red-500">*</span></label>
+                            <input type="text" id="nisn" name="nisn" value="{{ old('nisn') }}" required inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="0061234567" class="{{ $inputClass }}">
+                            <p class="mt-1 text-xs text-slate-500">10 digit angka sesuai data Dapodik/kartu NISN. Satu NISN hanya bisa mendaftar sekali per tahun ajaran.</p>
                         </div>
                         <div>
                             <label for="gender" class="{{ $labelClass }}">Jenis Kelamin <span class="text-red-500">*</span></label>
@@ -82,7 +93,8 @@
                         </div>
                         <div>
                             <label for="phone" class="{{ $labelClass }}">No. HP/WhatsApp <span class="text-red-500">*</span></label>
-                            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" required class="{{ $inputClass }}">
+                            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" required placeholder="08xxxxxxxxxx" class="{{ $inputClass }}">
+                            <p class="mt-1 text-xs text-slate-500">Nomor aktif yang dapat dihubungi panitia.</p>
                         </div>
                         <div class="sm:col-span-2">
                             <label for="address" class="{{ $labelClass }}">Alamat Lengkap <span class="text-red-500">*</span></label>
@@ -177,8 +189,14 @@
                     </label>
                 </div>
 
+                <p class="mt-4 flex items-start gap-2 text-xs leading-relaxed text-slate-500">
+                    <svg class="mt-0.5 size-4 shrink-0 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/></svg>
+                    Periksa kembali seluruh isian sebelum mengirim. Setelah terkirim, data hanya dapat
+                    dikoreksi oleh panitia — hubungi kontak sekolah bila ada kekeliruan.
+                </p>
+
                 <button type="submit"
-                    class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 sm:w-auto">
+                    class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-primary-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-800 sm:w-auto">
                     <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
                     Kirim Pendaftaran
                 </button>

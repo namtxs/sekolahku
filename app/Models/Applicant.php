@@ -134,6 +134,17 @@ class Applicant extends Model implements HasMedia
     }
 
     /**
+     * Nomor urut pendaftaran pada jalur yang sama (urutan masuk).
+     */
+    public function queueNumber(): int
+    {
+        return static::query()
+            ->where('admission_path_id', $this->admission_path_id)
+            ->where('id', '<=', $this->id)
+            ->count();
+    }
+
+    /**
      * Verifikasi berkas: pending → verified.
      */
     public function verify(?string $note = null): void

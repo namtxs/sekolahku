@@ -83,16 +83,18 @@ class PpdbSeeder extends Seeder
     }
 
     /**
-     * Item menu utama "PPDB" (idempotent, tanpa menghapus item lain).
+     * Akses PPDB di header cukup lewat tombol amber "PPDB Online" di navbar
+     * (partials/header.blade.php). Item menu primary "/ppdb" justru membuat
+     * tautan dobel, jadi seeder membersihkannya bila pernah dibuat.
      */
     protected function seedMenuItem(): void
     {
-        $primary = Menu::firstOrCreate(['location' => 'primary'], ['name' => 'Menu Utama']);
-
-        $primary->items()->firstOrCreate(
-            ['title' => 'PPDB', 'parent_id' => null],
-            ['url' => '/ppdb', 'sort_order' => ($primary->items()->whereNull('parent_id')->max('sort_order') ?? 0) + 1],
-        );
+        Menu::query()
+            ->where('location', 'primary')
+            ->first()
+            ?->items()
+            ->where('url', '/ppdb')
+            ->delete();
     }
 
     /**
