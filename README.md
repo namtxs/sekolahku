@@ -125,6 +125,18 @@ Karena email dikirim via antrean database, jalankan worker antrean di produksi (
 php artisan queue:work --tries=3
 ```
 
+## Keamanan (Produksi)
+
+- **Rate limit login admin:** maksimal 5 percobaan per menit per kombinasi IP + email (bawaan Filament diperluas — lihat `app/Filament/Auth/Login.php`).
+- **Kata sandi pengguna:** minimal 8 karakter dengan kombinasi huruf dan angka (divalidasi di form Pengguna panel admin).
+- **Cookie sesi:** di produksi (HTTPS) aktifkan cookie sesi khusus HTTPS di `.env` agar cookie tidak terkirim lewat koneksi tidak terenkripsi:
+
+```env
+SESSION_SECURE_COOKIE=true
+```
+
+Jangan aktifkan flag ini di lingkungan dev tanpa HTTPS (mis. `http://sekolahku-v2.test`) — login tidak akan berfungsi.
+
 ## Struktur Proyek (Ringkas)
 
 | Lokasi | Isi |

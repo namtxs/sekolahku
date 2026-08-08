@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Users\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Validation\Rules\Password;
 
 class UserForm
 {
@@ -28,8 +29,8 @@ class UserForm
                     ->revealable()
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->dehydrated(fn (?string $state): bool => filled($state))
-                    ->minLength(8)
-                    ->helperText('Kosongkan bila tidak ingin mengubah kata sandi.'),
+                    ->rule(Password::min(8)->letters()->numbers())
+                    ->helperText('Minimal 8 karakter dengan kombinasi huruf dan angka. Kosongkan bila tidak ingin mengubah kata sandi.'),
                 Select::make('roles')
                     ->label('Peran')
                     ->relationship('roles', 'name')

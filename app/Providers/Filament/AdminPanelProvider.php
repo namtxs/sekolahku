@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Auth\Login;
 use App\Filament\Pages\Dashboard;
 use App\Settings\GeneralSettings;
 use Filament\FontProviders\BunnyFontProvider;
@@ -31,7 +32,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
-            ->login()
+            // Login kustom: rate limit per IP + email (lihat App\Filament\Auth\Login).
+            ->login(Login::class)
             ->brandName(function (): string {
                 try {
                     return app(GeneralSettings::class)->site_name ?: 'Sekolahku';
