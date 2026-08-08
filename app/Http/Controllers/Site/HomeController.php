@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use App\Models\AdmissionPath;
 use App\Models\Banner;
 use App\Models\Post;
 use App\Settings\GeneralSettings;
@@ -41,7 +42,14 @@ class HomeController extends Controller
 
         $headmasterQuote = $this->headmasterQuote(app(GeneralSettings::class)->headmaster_greeting);
 
-        return theme_view('home', compact('banners', 'latestPosts', 'announcements', 'albums', 'headmasterQuote'));
+        // Jalur PPDB yang sedang dibuka pada tahun aktif (untuk kartu CTA).
+        $ppdbOpenPaths = AdmissionPath::query()
+            ->open()
+            ->whereHas('academicYear', fn ($query) => $query->where('is_active', true))
+            ->with('academicYear')
+            ->get();
+
+        return theme_view('home', compact('banners', 'latestPosts', 'announcements', 'albums', 'headmasterQuote', 'ppdbOpenPaths'));
     }
 
     /**

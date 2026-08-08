@@ -113,6 +113,9 @@
             </section>
         @endif
 
+        {{-- CTA PPDB: tampil hanya saat ada jalur pendaftaran yang dibuka --}}
+        @include('themes.default.partials.ppdb-cta')
+
         {{-- Konten 2 kolom: utama kiri + sidebar widget kanan --}}
         <div class="mt-6 grid gap-8 lg:grid-cols-3">
             <div class="lg:col-span-2">

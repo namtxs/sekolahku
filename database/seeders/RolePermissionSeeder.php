@@ -29,6 +29,7 @@ class RolePermissionSeeder extends Seeder
         'widgets',
         'settings',
         'users',
+        'ppdb',
     ];
 
     /**

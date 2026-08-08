@@ -80,6 +80,7 @@ class AdminPanelProvider extends PanelProvider
             ->collapsedSidebarWidth('4rem')
             ->navigationGroups([
                 'Konten',
+                'PPDB',
                 'Tampilan',
                 'Lainnya',
                 'Sistem',

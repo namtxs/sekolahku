@@ -8,6 +8,7 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\PageController;
 use App\Http\Controllers\Site\FeedController;
 use App\Http\Controllers\Site\PostController;
+use App\Http\Controllers\Site\PpdbController;
 use App\Http\Controllers\Site\SitemapController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,21 @@ Route::get('/galeri/{slug}', [GalleryController::class, 'show'])->name('gallery.
 // Unduhan
 Route::get('/unduhan', [DownloadController::class, 'index'])->name('downloads.index');
 Route::get('/unduhan/{slug}/download', [DownloadController::class, 'download'])->name('downloads.download');
+
+// PPDB (Penerimaan Peserta Didik Baru)
+Route::prefix('ppdb')->name('ppdb.')->group(function () {
+    Route::get('/', [PpdbController::class, 'index'])->name('index');
+    Route::get('/daftar/{path:slug}', [PpdbController::class, 'create'])->name('create');
+    Route::post('/daftar/{path:slug}', [PpdbController::class, 'store'])
+        ->middleware('throttle:3,1')
+        ->name('store');
+    Route::get('/bukti', [PpdbController::class, 'success'])->name('success');
+    Route::get('/bukti/pdf', [PpdbController::class, 'receipt'])->name('receipt');
+    Route::get('/status', [PpdbController::class, 'statusForm'])->name('status');
+    Route::post('/status', [PpdbController::class, 'checkStatus'])
+        ->middleware('throttle:10,1')
+        ->name('status.check');
+});
 
 // Kontak
 Route::get('/kontak', [ContactController::class, 'show'])->name('contact.show');
