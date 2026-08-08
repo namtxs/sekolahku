@@ -11,8 +11,9 @@
         'breadcrumbs' => ['PPDB' => route('ppdb.index'), 'Cek Status' => null],
     ])
 
-    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-        <form action="{{ route('ppdb.status.check') }}" method="post" class="rounded-sm border border-slate-300 bg-white shadow-sm">
+    {{-- Kontainer luar 6xl standar situs; kartu di dalamnya dibatasi 3xl agar tetap nyaman dibaca. --}}
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <form action="{{ route('ppdb.status.check') }}" method="post" class="mx-auto max-w-3xl rounded-sm border border-slate-300 bg-white shadow-sm">
             @csrf
             @include('themes.default.partials.card-title', ['title' => 'Formulir Cek Status'])
             <div class="p-5 sm:p-6">
@@ -52,7 +53,7 @@
             @php($currentStep = $statusOrder[$applicant->status] ?? 1)
             @php($isRejected = $applicant->status === 'rejected')
 
-            <section class="mt-8 rounded-sm border border-slate-300 bg-white shadow-sm">
+            <section class="mx-auto mt-8 max-w-3xl rounded-sm border border-slate-300 bg-white shadow-sm">
                 @include('themes.default.partials.card-title', ['title' => 'Hasil Pemeriksaan'])
                 <div class="p-5 sm:p-6">
                     <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

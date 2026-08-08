@@ -17,7 +17,7 @@
         'breadcrumbs' => ['PPDB' => route('ppdb.index'), 'Jalur '.$path->name => null],
     ])
 
-    <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         {{-- Indikator langkah: ringkasan 4 bagian formulir --}}
         <ol class="mb-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3" aria-label="Langkah pengisian formulir">
             @foreach(['Data Diri', 'Orang Tua/Wali', 'Sekolah & Nilai', 'Unggah Berkas'] as $stepIndex => $stepLabel)

@@ -9,9 +9,10 @@
         'breadcrumbs' => ['PPDB' => route('ppdb.index'), 'Bukti Pendaftaran' => null],
     ])
 
-    <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    {{-- Kontainer luar 6xl standar situs; kartu di dalamnya dibatasi 3xl agar tetap nyaman dibaca. --}}
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         {{-- Nomor pendaftaran besar --}}
-        <section class="rounded-sm border border-slate-300 bg-white text-center shadow-sm">
+        <section class="mx-auto max-w-3xl rounded-sm border border-slate-300 bg-white text-center shadow-sm">
             <div class="border-b border-slate-200 bg-green-50 px-6 py-5">
                 <span class="mx-auto flex size-14 items-center justify-center rounded-full bg-green-100 text-green-700">
                     <svg class="size-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
@@ -56,7 +57,7 @@
         </section>
 
         {{-- Ringkasan data --}}
-        <section class="mt-6 rounded-sm border border-slate-300 bg-white shadow-sm">
+        <section class="mx-auto mt-6 max-w-3xl rounded-sm border border-slate-300 bg-white shadow-sm">
             @include('themes.default.partials.card-title', ['title' => 'Ringkasan Data Pendaftar'])
             <dl class="divide-y divide-slate-100 px-5 text-sm">
                 @foreach([
@@ -78,7 +79,7 @@
             </dl>
         </section>
 
-        <p class="mt-6 rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800">
+        <p class="mx-auto mt-6 max-w-3xl rounded-sm border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800">
             <strong>Langkah selanjutnya:</strong> panitia akan memverifikasi berkas Anda. Pantau perkembangan
             status melalui halaman <a href="{{ route('ppdb.status') }}" class="font-bold underline hover:text-amber-900">Cek Status</a>
             menggunakan nomor pendaftaran dan tanggal lahir. Hasil seleksi diumumkan setelah pendaftaran
