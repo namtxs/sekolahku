@@ -98,15 +98,6 @@
                     @else
                         <span class="line-clamp-2 font-heading text-lg font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-xl md:line-clamp-1 lg:text-[1.65rem]">{{ $siteName }}</span>
                     @endif
-                    <span class="mt-1.5 block truncate text-xs tracking-wide text-primary-100 sm:text-sm">
-                        @if(filled($settings->jenjang ?? null)){{ $settings->jenjang }}@endif
-                        @if(filled($settings->npsn ?? null))
-                            <span class="text-primary-300" aria-hidden="true"> &middot; </span>NPSN {{ $settings->npsn }}
-                        @endif
-                    </span>
-                    @if(filled($settings->address ?? null))
-                        <span class="mt-1 hidden truncate text-[11px] leading-snug text-primary-200/90 md:block">{{ $settings->address }}</span>
-                    @endif
                 </span>
             </a>
 

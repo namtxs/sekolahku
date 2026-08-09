@@ -36,10 +36,23 @@ class SmokeTest extends TestCase
 
     public function test_homepage_shows_site_identity(): void
     {
-        $this->get('/')
+        $html = $this->get('/')
             ->assertOk()
             ->assertSeeInOrder(['SMK MUSAMBA', 'SMK Muhammadiyah 1 Ambarawa'])
-            ->assertSee('Sambutan Kepala Sekolah');
+            ->assertSee('Sambutan Kepala Sekolah')
+            ->getContent();
+
+        // Brand band hanya nama pendek + nama lengkap (NPSN/alamat tetap di footer).
+        preg_match(
+            '/<a href="[^"]*" class="group flex min-w-0 items-center[^"]*">.*?<\/a>/s',
+            $html,
+            $brandBand
+        );
+        $this->assertNotEmpty($brandBand, 'Header brand band markup tidak ditemukan');
+        $this->assertStringContainsString('SMK MUSAMBA', $brandBand[0]);
+        $this->assertStringContainsString('SMK Muhammadiyah 1 Ambarawa', $brandBand[0]);
+        $this->assertStringNotContainsString('NPSN', $brandBand[0]);
+        $this->assertStringNotContainsString('Jl.', $brandBand[0]);
     }
 
     public function test_news_index_hides_unpublished_posts(): void
