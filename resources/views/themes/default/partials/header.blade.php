@@ -94,7 +94,7 @@
                 <span class="min-w-0">
                     @if($siteShortName)
                         <span class="block font-heading text-lg font-bold uppercase leading-[1.1] tracking-wide text-amber-400 sm:text-xl lg:text-[1.65rem]">{{ $siteShortName }}</span>
-                        <span class="mt-1 block truncate font-heading text-sm font-semibold leading-snug text-white sm:text-base">{{ $siteName }}</span>
+                        <span class="mt-1 block truncate font-heading text-sm font-semibold uppercase leading-snug tracking-wide text-white sm:text-base">{{ $siteName }}</span>
                     @else
                         <span class="line-clamp-2 font-heading text-lg font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-xl md:line-clamp-1 lg:text-[1.65rem]">{{ $siteName }}</span>
                     @endif
