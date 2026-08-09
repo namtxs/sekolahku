@@ -19,9 +19,9 @@
 
 <footer class="border-t-[3px] border-amber-400 bg-primary-800 text-sm text-primary-100">
     {{-- Footer: brand+kontak | tautan | sosial --}}
-    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12 lg:px-8 lg:py-12">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12 lg:px-8 lg:py-12">
         {{-- 1. Brand + kontak --}}
-        <div class="md:col-span-2 lg:col-span-1">
+        <div>
             <a href="{{ route('home') }}" class="group flex flex-col gap-3">
                 <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteShortName ?? $siteName }}"
                     class="size-14 shrink-0 drop-shadow-sm transition group-hover:opacity-95">
