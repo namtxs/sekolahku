@@ -19,41 +19,41 @@
 
 <footer class="border-t-[3px] border-amber-400 bg-primary-800 text-sm text-primary-100">
     {{-- Footer: brand+kontak | tautan | sosial --}}
-    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12 lg:px-8 lg:py-12">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 sm:px-6 md:grid-cols-3 lg:px-8">
         {{-- 1. Brand + kontak --}}
         <div>
-            <a href="{{ route('home') }}" class="group flex flex-col gap-3">
+            <a href="{{ route('home') }}" class="group flex items-start gap-3">
                 <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteShortName ?? $siteName }}"
-                    class="size-14 shrink-0 drop-shadow-sm transition group-hover:opacity-95">
+                    class="size-12 shrink-0 drop-shadow-sm transition group-hover:opacity-95">
                 <span class="min-w-0">
                     @if($siteShortName)
-                        <span class="block font-heading text-lg font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteShortName }}</span>
-                        <span class="mt-1 block font-heading text-sm font-semibold uppercase leading-snug tracking-wide text-white">{{ $siteName }}</span>
+                        <span class="block font-heading text-base font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteShortName }}</span>
+                        <span class="mt-0.5 block font-heading text-xs font-semibold uppercase leading-snug tracking-wide text-white">{{ $siteName }}</span>
                     @else
-                        <span class="block font-heading text-lg font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteName }}</span>
+                        <span class="block font-heading text-base font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteName }}</span>
                     @endif
                     @if($siteTagline)
-                        <span class="mt-1.5 block text-xs italic leading-relaxed text-primary-200">{{ $siteTagline }}</span>
+                        <span class="mt-1 block text-xs italic leading-snug text-primary-200">{{ $siteTagline }}</span>
                     @endif
                 </span>
             </a>
 
             @if($hasContact)
-                <ul class="mt-5 space-y-3 text-sm leading-relaxed">
+                <ul class="mt-3 space-y-2 border-t border-white/15 pt-3 text-sm leading-snug">
                     @if(filled($settings->address ?? null))
-                        <li class="flex items-start gap-2.5">
+                        <li class="flex items-start gap-2">
                             <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.112.02.31-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9.5A7 7 0 1 0 3 9.5c0 2.993 1.698 5.488 3.355 7.084a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 1.039.573l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd"/></svg>
                             <span class="min-w-0">{{ $settings->address }}</span>
                         </li>
                     @endif
                     @if(filled($settings->phone ?? null))
-                        <li class="flex items-start gap-2.5">
+                        <li class="flex items-start gap-2">
                             <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd"/></svg>
                             <a href="tel:{{ preg_replace('/\s+/', '', $settings->phone) }}" class="transition hover:text-amber-300">{{ $settings->phone }}</a>
                         </li>
                     @endif
                     @if(filled($settings->email ?? null))
-                        <li class="flex items-start gap-2.5">
+                        <li class="flex items-start gap-2">
                             <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
                             <a href="mailto:{{ $settings->email }}" class="break-all transition hover:text-amber-300">{{ $settings->email }}</a>
                         </li>
