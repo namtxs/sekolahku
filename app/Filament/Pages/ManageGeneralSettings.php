@@ -49,6 +49,11 @@ class ManageGeneralSettings extends SettingsPage
                             ->label('Nama Singkat / Brand')
                             ->maxLength(100)
                             ->helperText('Ditampilkan menonjol di header (contoh: SMK MUSAMBA). Kosongkan jika tidak dipakai.'),
+                        TextInput::make('site_tagline')
+                            ->label('Tagline / Slogan')
+                            ->maxLength(150)
+                            ->helperText('Motto singkat di bawah nama sekolah pada header (contoh: Beriman, Berilmu, Berprestasi). Kosongkan jika tidak dipakai.')
+                            ->columnSpanFull(),
                         TextInput::make('npsn')
                             ->label('NPSN')
                             ->maxLength(20),

@@ -38,11 +38,11 @@ class SmokeTest extends TestCase
     {
         $html = $this->get('/')
             ->assertOk()
-            ->assertSeeInOrder(['SMK MUSAMBA', 'SMK Muhammadiyah 1 Ambarawa'])
+            ->assertSeeInOrder(['SMK MUSAMBA', 'SMK Muhammadiyah 1 Ambarawa', 'Beriman, Berilmu, Berprestasi'])
             ->assertSee('Sambutan Kepala Sekolah')
             ->getContent();
 
-        // Brand band hanya nama pendek + nama lengkap (NPSN/alamat tetap di footer).
+        // Brand band: nama pendek + nama lengkap + tagline (NPSN/alamat tetap di footer).
         preg_match(
             '/<a href="[^"]*" class="group flex min-w-0 items-center[^"]*">.*?<\/a>/s',
             $html,
@@ -51,6 +51,7 @@ class SmokeTest extends TestCase
         $this->assertNotEmpty($brandBand, 'Header brand band markup tidak ditemukan');
         $this->assertStringContainsString('SMK MUSAMBA', $brandBand[0]);
         $this->assertStringContainsString('SMK Muhammadiyah 1 Ambarawa', $brandBand[0]);
+        $this->assertStringContainsString('Beriman, Berilmu, Berprestasi', $brandBand[0]);
         $this->assertStringNotContainsString('NPSN', $brandBand[0]);
         $this->assertStringNotContainsString('Jl.', $brandBand[0]);
     }

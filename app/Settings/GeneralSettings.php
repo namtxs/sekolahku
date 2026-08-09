@@ -10,6 +10,8 @@ class GeneralSettings extends Settings
 
     public ?string $site_short_name;
 
+    public ?string $site_tagline;
+
     public ?string $npsn;
 
     public ?string $jenjang;

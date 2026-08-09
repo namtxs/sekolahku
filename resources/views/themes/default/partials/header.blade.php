@@ -1,6 +1,7 @@
 @php
     $siteName = $settings->site_name ?? config('app.name');
     $siteShortName = filled($settings->site_short_name ?? null) ? $settings->site_short_name : null;
+    $siteTagline = filled($settings->site_tagline ?? null) ? $settings->site_tagline : null;
     $navItems = $primaryMenu?->rootItems ?? collect();
 
     $headerSocials = array_filter([
@@ -97,6 +98,9 @@
                         <span class="mt-1 block truncate font-heading text-sm font-semibold uppercase leading-snug tracking-wide text-white sm:text-base">{{ $siteName }}</span>
                     @else
                         <span class="line-clamp-2 font-heading text-lg font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-xl md:line-clamp-1 lg:text-[1.65rem]">{{ $siteName }}</span>
+                    @endif
+                    @if($siteTagline)
+                        <span class="mt-0.5 block truncate text-xs italic leading-snug text-primary-200/90 sm:text-sm">{{ $siteTagline }}</span>
                     @endif
                 </span>
             </a>
