@@ -65,20 +65,20 @@ class DemoContentSeeder extends Seeder
         $settings = app(GeneralSettings::class);
 
         $settings->fill([
-            'site_name' => 'SMA Negeri 1 Contoh',
+            'site_name' => 'SMK Muhammadiyah 1 Ambarawa',
             'npsn' => '12345678',
-            'jenjang' => 'SMA',
+            'jenjang' => 'SMK',
             'address' => 'Jl. Pendidikan No. 1, Kel. Sukamaju, Kec. Contoh, Kota Bandung, Jawa Barat 40111',
             'phone' => '(022) 1234567',
-            'email' => 'info@sman1contoh.sch.id',
+            'email' => 'info@smkmusamba.sch.id',
             'headmaster_name' => 'Drs. H. Ahmad Suryadi, M.Pd.',
-            'headmaster_greeting' => '<p>Assalamualaikum warahmatullahi wabarakatuh. Puji syukur kita panjatkan ke hadirat Tuhan Yang Maha Esa atas segala rahmat dan karunia-Nya. Selamat datang di website resmi SMA Negeri 1 Contoh, media informasi dan komunikasi antara sekolah, orang tua, peserta didik, serta masyarakat luas.</p><p>Melalui website ini kami berupaya menyajikan informasi terkini seputar kegiatan pembelajaran, prestasi peserta didik, agenda sekolah, hingga layanan administrasi. Kami percaya keterbukaan informasi adalah bagian penting dari pelayanan pendidikan yang berkualitas.</p><p>Kami mengucapkan terima kasih atas kunjungan Anda. Saran dan masukan yang membangun sangat kami harapkan demi kemajuan sekolah tercinta ini. Wassalamualaikum warahmatullahi wabarakatuh.</p>',
-            'facebook' => 'https://facebook.com/sman1contoh',
-            'instagram' => 'https://instagram.com/sman1contoh',
-            'youtube' => 'https://youtube.com/@sman1contoh',
-            'twitter' => 'https://x.com/sman1contoh',
-            'meta_description' => 'Website resmi SMA Negeri 1 Contoh Kota Bandung. Informasi PPDB, berita sekolah, prestasi siswa, galeri kegiatan, dan unduhan dokumen.',
-            'meta_keywords' => 'SMA Negeri 1 Contoh, sekolah, PPDB, pendidikan, Bandung, SMA',
+            'headmaster_greeting' => '<p>Assalamualaikum warahmatullahi wabarakatuh. Puji syukur kita panjatkan ke hadirat Tuhan Yang Maha Esa atas segala rahmat dan karunia-Nya. Selamat datang di website resmi SMK Muhammadiyah 1 Ambarawa (SMK MUSAMBA), media informasi dan komunikasi antara sekolah, orang tua, peserta didik, serta masyarakat luas.</p><p>Melalui website ini kami berupaya menyajikan informasi terkini seputar kegiatan pembelajaran, prestasi peserta didik, agenda sekolah, hingga layanan administrasi. Kami percaya keterbukaan informasi adalah bagian penting dari pelayanan pendidikan yang berkualitas.</p><p>Kami mengucapkan terima kasih atas kunjungan Anda. Saran dan masukan yang membangun sangat kami harapkan demi kemajuan sekolah tercinta ini. Wassalamualaikum warahmatullahi wabarakatuh.</p>',
+            'facebook' => 'https://facebook.com/smkmusamba',
+            'instagram' => 'https://instagram.com/smkmusamba',
+            'youtube' => 'https://youtube.com/@smkmusamba',
+            'twitter' => 'https://x.com/smkmusamba',
+            'meta_description' => 'Website resmi SMK Muhammadiyah 1 Ambarawa (SMK MUSAMBA). Informasi PPDB, berita sekolah, prestasi siswa, galeri kegiatan, dan unduhan dokumen.',
+            'meta_keywords' => 'SMK Muhammadiyah 1 Ambarawa, SMK MUSAMBA, SMK, sekolah, PPDB, pendidikan, Ambarawa',
         ]);
 
         $settings->save();
@@ -160,7 +160,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Pengumuman',
                 'tags' => ['PPDB'],
                 'body' => [
-                    'SMA Negeri 1 Contoh membuka pendaftaran Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027. Pendaftaran dilakukan secara daring melalui laman PPDB resmi dengan empat jalur: zonasi, afirmasi, perpindahan tugas orang tua, dan prestasi.',
+                    'SMK Muhammadiyah 1 Ambarawa membuka pendaftaran Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2026/2027. Pendaftaran dilakukan secara daring melalui laman PPDB resmi dengan empat jalur: zonasi, afirmasi, perpindahan tugas orang tua, dan prestasi.',
                     'Calon peserta didik diminta menyiapkan berkas berupa ijazah atau surat keterangan lulus, kartu keluarga, akta kelahiran, dan pas foto terbaru. Seluruh berkas diunggah dalam format PDF atau JPG dengan ukuran maksimal 2 MB per berkas.',
                     'Jadwal penting: pendaftaran dibuka 1-10 Juli, verifikasi berkas 11-13 Juli, pengumuman hasil seleksi 15 Juli, dan daftar ulang 16-18 Juli. Informasi lebih lanjut dapat menghubungi panitia PPDB di nomor telepon sekolah pada jam kerja.',
                 ],
@@ -170,7 +170,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Kegiatan Sekolah',
                 'tags' => ['HUT RI', 'OSIS'],
                 'body' => [
-                    'Keluarga besar SMA Negeri 1 Contoh menggelar upacara bendera dalam rangka memperingati Hari Ulang Tahun ke-81 Kemerdekaan Republik Indonesia di lapangan utama sekolah. Upacara diikuti seluruh peserta didik, guru, dan tenaga kependidikan.',
+                    'Keluarga besar SMK Muhammadiyah 1 Ambarawa menggelar upacara bendera dalam rangka memperingati Hari Ulang Tahun ke-81 Kemerdekaan Republik Indonesia di lapangan utama sekolah. Upacara diikuti seluruh peserta didik, guru, dan tenaga kependidikan.',
                     'Bertindak sebagai pembina upacara, Kepala Sekolah menyampaikan amanat tentang makna kemerdekaan bagi generasi muda. Beliau mengajak seluruh peserta didik mengisi kemerdekaan dengan belajar sungguh-sungguh dan berkarya bagi bangsa.',
                     'Petugas upacara kali ini adalah pasukan pengibar bendera sekolah yang telah berlatih selama dua pekan di bawah bimbingan pembina OSIS. Upacara ditutup dengan pembacaan doa dan menyanyikan lagu-lagu perjuangan.',
                 ],
@@ -180,7 +180,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Prestasi',
                 'tags' => ['Lomba'],
                 'body' => [
-                    'Prestasi membanggakan kembali ditorehkan peserta didik SMA Negeri 1 Contoh. Tim Karya Ilmiah Remaja yang beranggotakan tiga siswa kelas XI berhasil meraih Juara 1 Lomba Karya Ilmiah Remaja tingkat Provinsi Jawa Barat.',
+                    'Prestasi membanggakan kembali ditorehkan peserta didik SMK Muhammadiyah 1 Ambarawa. Tim Karya Ilmiah Remaja yang beranggotakan tiga siswa kelas XI berhasil meraih Juara 1 Lomba Karya Ilmiah Remaja tingkat Provinsi Jawa Barat.',
                     'Karya berjudul "Pemanfaatan Limbah Kulit Pisang sebagai Bahan Baku Bioplastik Ramah Lingkungan" berhasil menyisihkan lebih dari 120 karya dari berbagai sekolah. Dewan juri menilai penelitian ini orisinal dan aplikatif.',
                     'Kepala Sekolah menyampaikan apresiasi dan berharap prestasi ini memotivasi peserta didik lain untuk terus berkarya. Tim akan mewakili provinsi pada kompetisi tingkat nasional bulan depan.',
                 ],
@@ -200,17 +200,17 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Ekstrakurikuler',
                 'tags' => ['Pramuka'],
                 'body' => [
-                    'Gerakan Pramuka Gugus Depan SMA Negeri 1 Contoh menyelenggarakan Kemah Bakti selama tiga hari dua malam di Bumi Perkemahan Cikole, Lembang. Kegiatan diikuti 150 anggota pramuka penegak dari kelas X dan XI.',
+                    'Gerakan Pramuka Gugus Depan SMK Muhammadiyah 1 Ambarawa menyelenggarakan Kemah Bakti selama tiga hari dua malam di Bumi Perkemahan Cikole, Lembang. Kegiatan diikuti 150 anggota pramuka penegak dari kelas X dan XI.',
                     'Rangkaian kegiatan meliputi penjelajahan alam, pionering, bakti sosial membersihkan area wisata, serta api unggun pada malam puncak. Peserta juga mendapatkan materi kepemimpinan dan manajemen regu dari para pembina.',
                     'Kemah bakti ini bertujuan menumbuhkan kemandirian, kedisiplinan, dan kepedulian sosial peserta didik. Kegiatan berjalan lancar dan seluruh peserta kembali ke sekolah dengan selamat.',
                 ],
             ],
             [
-                'title' => 'Tim Basket Putra Melaju ke Final Kejuaraan Antar-SMA',
+                'title' => 'Tim Basket Putra Melaju ke Final Kejuaraan Antar-SMK',
                 'category' => 'Prestasi',
                 'tags' => ['Olahraga', 'Lomba'],
                 'body' => [
-                    'Tim basket putra SMA Negeri 1 Contoh memastikan satu tempat di babak final Kejuaraan Basket Antar-SMA se-Kota Bandung setelah mengalahkan tim unggulan dengan skor 68-61 pada laga semifinal yang berlangsung sengit.',
+                    'Tim basket putra SMK Muhammadiyah 1 Ambarawa memastikan satu tempat di babak final Kejuaraan Basket Antar-SMK se-Kota Bandung setelah mengalahkan tim unggulan dengan skor 68-61 pada laga semifinal yang berlangsung sengit.',
                     'Pertandingan berjalan ketat sejak kuarter pertama. Kemenangan dipastikan lewat tembakan tiga angka kapten tim pada menit-menit akhir. Dukungan suporter yang memadati tribun menjadi energi tambahan bagi para pemain.',
                     'Laga final akan digelar akhir pekan ini di GOR Kota Bandung. Seluruh warga sekolah diundang hadir memberikan dukungan langsung kepada tim kebanggaan sekolah.',
                 ],
@@ -230,7 +230,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Kegiatan Sekolah',
                 'tags' => ['Seni', 'OSIS'],
                 'body' => [
-                    'Pentas seni akhir tahun SMA Negeri 1 Contoh berlangsung meriah di lapangan sekolah. Acara bertajuk "Harmoni dalam Karya" ini menampilkan beragam pertunjukan mulai dari tari tradisional, band pelajar, teater, hingga pameran karya rupa.',
+                    'Pentas seni akhir tahun SMK Muhammadiyah 1 Ambarawa berlangsung meriah di lapangan sekolah. Acara bertajuk "Harmoni dalam Karya" ini menampilkan beragam pertunjukan mulai dari tari tradisional, band pelajar, teater, hingga pameran karya rupa.',
                     'Sebanyak 25 penampilan memukau ribuan penonton yang terdiri dari peserta didik, guru, orang tua, dan warga sekitar. Stan pameran karya siswa juga menjual berbagai produk kerajinan hasil pembelajaran kewirausahaan.',
                     'Ketua OSIS menyampaikan bahwa seluruh rangkaian acara dikelola secara mandiri oleh panitia siswa. Kegiatan ini menjadi wadah apresiasi sekaligus ajang unjuk bakat peserta didik di bidang seni.',
                 ],
@@ -240,7 +240,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Akademik',
                 'tags' => ['Literasi'],
                 'body' => [
-                    'SMA Negeri 1 Contoh meluncurkan program Gerakan Literasi Sekolah bertema "Satu Bulan Satu Buku". Setiap peserta didik ditargetkan menyelesaikan minimal satu buku bacaan setiap bulan dan menuliskan ulasannya di jurnal literasi.',
+                    'SMK Muhammadiyah 1 Ambarawa meluncurkan program Gerakan Literasi Sekolah bertema "Satu Bulan Satu Buku". Setiap peserta didik ditargetkan menyelesaikan minimal satu buku bacaan setiap bulan dan menuliskan ulasannya di jurnal literasi.',
                     'Program ini didukung dengan pembenahan perpustakaan sekolah, penambahan koleksi buku baru, serta pojok baca di setiap kelas. Lima belas menit sebelum pembelajaran dimulai, seluruh warga sekolah membaca buku bersama-sama.',
                     'Ulasan buku terbaik setiap bulan akan mendapatkan apresiasi dan dipublikasikan di majalah dinding serta website sekolah. Diharapkan program ini menumbuhkan budaya baca yang kuat di lingkungan sekolah.',
                 ],
@@ -250,7 +250,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Kegiatan Sekolah',
                 'tags' => ['OSIS'],
                 'body' => [
-                    'Pemilihan Ketua OSIS SMA Negeri 1 Contoh periode 2026/2027 berlangsung demokratis dengan sistem pemungutan suara elektronik. Tiga pasangan calon bersaing memperebutkan suara dari seluruh peserta didik dan dewan guru.',
+                    'Pemilihan Ketua OSIS SMK Muhammadiyah 1 Ambarawa periode 2026/2027 berlangsung demokratis dengan sistem pemungutan suara elektronik. Tiga pasangan calon bersaing memperebutkan suara dari seluruh peserta didik dan dewan guru.',
                     'Sebelum hari pemilihan, para kandidat mengikuti rangkaian kampanye dan debat terbuka yang menguji visi, misi, serta program kerja masing-masing. Antusiasme pemilih tercatat tinggi dengan partisipasi mencapai 97 persen.',
                     'Pasangan terpilih akan dilantik pada upacara bendera pekan depan. Kepala Sekolah berpesan agar pengurus baru mampu menjadi teladan dan menjalankan program yang bermanfaat bagi seluruh warga sekolah.',
                 ],
@@ -280,7 +280,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Ekstrakurikuler',
                 'tags' => ['Lomba'],
                 'body' => [
-                    'Tim robotik SMA Negeri 1 Contoh lolos ke babak final Kompetisi Robotik Pelajar Nasional setelah menempati peringkat dua besar pada seleksi regional. Tim beranggotakan lima peserta didik lintas angkatan ini akan berlaga di Jakarta.',
+                    'Tim robotik SMK Muhammadiyah 1 Ambarawa lolos ke babak final Kompetisi Robotik Pelajar Nasional setelah menempati peringkat dua besar pada seleksi regional. Tim beranggotakan lima peserta didik lintas angkatan ini akan berlaga di Jakarta.',
                     'Robot rancangan tim mengusung tema otomasi pertanian, yakni prototipe penyiram tanaman pintar berbasis sensor kelembapan tanah. Persiapan intensif dilakukan setiap sore di laboratorium sekolah.',
                     'Pembina ekstrakurikuler berharap dukungan doa dari seluruh warga sekolah agar tim dapat memberikan hasil terbaik di tingkat nasional.',
                 ],
@@ -290,7 +290,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Akademik',
                 'tags' => ['Ujian'],
                 'body' => [
-                    'SMA Negeri 1 Contoh melaksanakan Asesmen Nasional Berbasis Komputer (ANBK) yang diikuti 45 peserta didik kelas XI terpilih sebagai sampel. Pelaksanaan berlangsung dua hari di laboratorium komputer sekolah.',
+                    'SMK Muhammadiyah 1 Ambarawa melaksanakan Asesmen Nasional Berbasis Komputer (ANBK) yang diikuti 45 peserta didik kelas XI terpilih sebagai sampel. Pelaksanaan berlangsung dua hari di laboratorium komputer sekolah.',
                     'Asesmen mencakup literasi membaca, numerasi, serta survei karakter dan lingkungan belajar. Seluruh perangkat dan jaringan telah melewati simulasi sehingga pelaksanaan berjalan lancar tanpa kendala teknis berarti.',
                     'Hasil asesmen akan menjadi bahan evaluasi mutu pembelajaran dan dasar penyusunan program peningkatan kualitas pendidikan di sekolah.',
                 ],
@@ -300,7 +300,7 @@ class DemoContentSeeder extends Seeder
                 'category' => 'Kegiatan Sekolah',
                 'tags' => [],
                 'body' => [
-                    'SMA Negeri 1 Contoh menerima kunjungan studi banding dari SMA Negeri 2 Harapan. Rombongan yang terdiri dari kepala sekolah, wakil kepala sekolah, dan perwakilan guru disambut hangat di ruang pertemuan utama.',
+                    'SMK Muhammadiyah 1 Ambarawa menerima kunjungan studi banding dari SMA Negeri 2 Harapan. Rombongan yang terdiri dari kepala sekolah, wakil kepala sekolah, dan perwakilan guru disambut hangat di ruang pertemuan utama.',
                     'Kunjungan difokuskan pada pengelolaan program sekolah penggerak, sistem informasi akademik, dan pembinaan ekstrakurikuler unggulan. Kedua sekolah saling bertukar praktik baik dalam pengelolaan pembelajaran.',
                     'Kegiatan diakhiri dengan penandatanganan nota kesepahaman kerja sama antar-sekolah di bidang peningkatan kompetensi guru dan pertukaran kegiatan kesiswaan.',
                 ],
@@ -391,7 +391,7 @@ class DemoContentSeeder extends Seeder
     {
         $items = [
             'Profil Sekolah' => [
-                'SMA Negeri 1 Contoh adalah sekolah menengah atas negeri yang berdiri sejak tahun 1975 dan berlokasi di jantung Kota Bandung. Dengan NPSN 12345678, sekolah ini telah terakreditasi A dan menjadi salah satu sekolah rujukan di Jawa Barat.',
+                'SMK Muhammadiyah 1 Ambarawa (SMK MUSAMBA) adalah sekolah menengah kejuruan di bawah naungan Muhammadiyah yang berdiri sejak tahun 1975 dan berlokasi di Ambarawa. Dengan NPSN 12345678, sekolah ini telah terakreditasi A dan menjadi salah satu sekolah rujukan di Jawa Tengah.',
                 'Saat ini sekolah membina lebih dari 1.000 peserta didik yang terbagi dalam 30 rombongan belajar, didukung 65 guru dan 20 tenaga kependidikan profesional. Kurikulum yang diterapkan adalah Kurikulum Merdeka dengan penguatan profil pelajar Pancasila.',
                 'Sekolah terus berbenah meningkatkan mutu layanan pendidikan melalui pengembangan sarana prasarana, digitalisasi pembelajaran, serta kemitraan dengan perguruan tinggi dan dunia industri.',
             ],
@@ -401,12 +401,12 @@ class DemoContentSeeder extends Seeder
                 'Tujuan yang ingin dicapai antara lain meningkatnya rata-rata capaian akademik, bertambahnya prestasi pada berbagai kompetisi, serta terciptanya lingkungan sekolah yang aman, nyaman, dan ramah anak.',
             ],
             'Sejarah' => [
-                'SMA Negeri 1 Contoh didirikan pada tanggal 17 Juli 1975 berdasarkan Surat Keputusan Menteri Pendidikan dan Kebudayaan. Pada awal berdirinya, sekolah menempati gedung sederhana dengan enam ruang kelas dan 240 peserta didik angkatan pertama.',
+                'SMK Muhammadiyah 1 Ambarawa didirikan pada tanggal 17 Juli 1975 berdasarkan Surat Keputusan Menteri Pendidikan dan Kebudayaan. Pada awal berdirinya, sekolah menempati gedung sederhana dengan enam ruang kelas dan 240 peserta didik angkatan pertama.',
                 'Seiring berjalannya waktu, sekolah berkembang pesat. Tahun 1990 dibangun gedung laboratorium dan perpustakaan, disusul aula serbaguna pada tahun 2003. Pada tahun 2010 sekolah meraih akreditasi A dan dipercaya menjadi sekolah rintisan berstandar nasional.',
-                'Hingga kini SMA Negeri 1 Contoh telah meluluskan lebih dari 15.000 alumni yang tersebar di berbagai profesi, baik di dalam maupun luar negeri. Semangat "berprestasi dan berkarakter" terus diwariskan dari generasi ke generasi.',
+                'Hingga kini SMK Muhammadiyah 1 Ambarawa telah meluluskan lebih dari 15.000 alumni yang tersebar di berbagai profesi, baik di dalam maupun luar negeri. Semangat "berprestasi dan berkarakter" terus diwariskan dari generasi ke generasi.',
             ],
             'Fasilitas' => [
-                'SMA Negeri 1 Contoh memiliki fasilitas pembelajaran yang lengkap untuk mendukung proses pendidikan. Tersedia 30 ruang kelas ber-AC yang dilengkapi proyektor, laboratorium IPA (fisika, kimia, biologi), laboratorium komputer, dan laboratorium bahasa.',
+                'SMK Muhammadiyah 1 Ambarawa memiliki fasilitas pembelajaran yang lengkap untuk mendukung proses pendidikan. Tersedia 30 ruang kelas ber-AC yang dilengkapi proyektor, laboratorium IPA (fisika, kimia, biologi), laboratorium komputer, dan laboratorium bahasa.',
                 'Fasilitas penunjang lainnya meliputi perpustakaan dengan koleksi lebih dari 10.000 judul buku, aula serbaguna berkapasitas 500 orang, masjid, ruang UKS, ruang bimbingan konseling, serta kantin sehat.',
                 'Untuk kegiatan olahraga, sekolah menyediakan lapangan basket, lapangan voli, lapangan futsal, dan area senam. Seluruh area sekolah terjangkau jaringan internet nirkabel untuk mendukung pembelajaran digital.',
             ],
@@ -425,7 +425,7 @@ class DemoContentSeeder extends Seeder
                 'user_id' => $admin->id,
                 'category_id' => null,
                 'views' => random_int(50, 300),
-                'meta_title' => $title.' - SMA Negeri 1 Contoh',
+                'meta_title' => $title.' - SMK Muhammadiyah 1 Ambarawa',
                 'meta_description' => Str::limit(strip_tags($paragraphs[0]), 155),
             ]);
         }
@@ -453,7 +453,7 @@ class DemoContentSeeder extends Seeder
             'Apakah informasi lebih lanjut bisa didapatkan di bagian tata usaha?',
             'Keren sekali! Bangga menjadi bagian dari sekolah ini.',
             'Mohon informasi jadwal lengkapnya, terima kasih.',
-            'Selamat dan sukses untuk anak-anak hebat SMA Negeri 1 Contoh!',
+            'Selamat dan sukses untuk anak-anak hebat SMK Muhammadiyah 1 Ambarawa!',
             'Alhamdulillah, kabar yang menggembirakan. Semoga istiqomah.',
             'Sangat mendukung program sekolah seperti ini. Lanjutkan!',
         ];
@@ -496,7 +496,7 @@ class DemoContentSeeder extends Seeder
                     'post_id' => $post->id,
                     'parent_id' => $firstComment->id,
                     'name' => 'Admin Sekolah',
-                    'email' => 'info@sman1contoh.sch.id',
+                    'email' => 'info@smkmusamba.sch.id',
                     'body' => 'Terima kasih atas tanggapannya. Informasi lebih lanjut dapat menghubungi tata usaha pada jam kerja.',
                     'status' => 'approved',
                     'ip_address' => '192.168.1.1',
@@ -565,7 +565,7 @@ class DemoContentSeeder extends Seeder
             ],
             [
                 'title' => 'Ayo Dukung Tim Kebanggaan Sekolah',
-                'description' => 'Saksikan laga final kejuaraan basket antar-SMA akhir pekan ini.',
+                'description' => 'Saksikan laga final kejuaraan basket antar-SMK akhir pekan ini.',
                 'url' => '/berita/'.$posts[5]->slug,
                 'colors' => [[154, 52, 18], [69, 26, 3]],
             ],
@@ -653,7 +653,7 @@ class DemoContentSeeder extends Seeder
                 'user_id' => $admin->id,
             ]);
 
-            $pdfPath = $this->makePdf($title, 'SMA Negeri 1 Contoh - '.$category);
+            $pdfPath = $this->makePdf($title, 'SMK Muhammadiyah 1 Ambarawa - '.$category);
             $file->addMedia($pdfPath)
                 ->usingName($title)
                 ->usingFileName(Str::slug($title).'.pdf')

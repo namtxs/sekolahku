@@ -38,7 +38,7 @@ class SmokeTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('SMA Negeri 1 Contoh')
+            ->assertSee('SMK Muhammadiyah 1 Ambarawa')
             ->assertSee('Sambutan Kepala Sekolah');
     }
 
