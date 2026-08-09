@@ -465,6 +465,14 @@ html.fi {
     color: var(--sk-gold);
 }
 
+.sk-login-brand-fullname {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgb(255 255 255 / 0.92);
+}
+
 .sk-login-brand-rule {
     display: inline-block;
     width: 3rem;

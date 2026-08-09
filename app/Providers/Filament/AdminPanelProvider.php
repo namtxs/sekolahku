@@ -36,7 +36,11 @@ class AdminPanelProvider extends PanelProvider
             ->login(Login::class)
             ->brandName(function (): string {
                 try {
-                    return app(GeneralSettings::class)->site_name ?: 'Sekolahku';
+                    $settings = app(GeneralSettings::class);
+
+                    return filled($settings->site_short_name)
+                        ? $settings->site_short_name
+                        : ($settings->site_name ?: 'Sekolahku');
                 } catch (Throwable) {
                     // Settings belum tersedia (mis. saat instalasi awal).
                     return 'Sekolahku';

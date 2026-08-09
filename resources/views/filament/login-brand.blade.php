@@ -3,11 +3,16 @@
 @php
     $settings = rescue(fn () => app(\App\Settings\GeneralSettings::class), report: false);
     $siteName = $settings?->site_name ?: 'Sekolahku';
+    $siteShortName = filled($settings?->site_short_name) ? $settings->site_short_name : null;
+    $brandPrimary = $siteShortName ?: $siteName;
 @endphp
 
 <div class="sk-login-brand">
-    <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteName }}" class="sk-login-brand-logo">
-    <p class="sk-login-brand-name">{{ $siteName }}</p>
+    <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $brandPrimary }}" class="sk-login-brand-logo">
+    <p class="sk-login-brand-name">{{ $brandPrimary }}</p>
+    @if($siteShortName)
+        <p class="sk-login-brand-fullname">{{ $siteName }}</p>
+    @endif
     <span class="sk-login-brand-rule" aria-hidden="true"></span>
     <p class="sk-login-brand-sub">Panel Administrasi Situs Sekolah</p>
 </div>

@@ -43,7 +43,12 @@ class ManageGeneralSettings extends SettingsPage
                         TextInput::make('site_name')
                             ->label('Nama Sekolah / Situs')
                             ->required()
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->helperText('Nama resmi lengkap, misalnya SMK Muhammadiyah 1 Ambarawa.'),
+                        TextInput::make('site_short_name')
+                            ->label('Nama Singkat / Brand')
+                            ->maxLength(100)
+                            ->helperText('Ditampilkan menonjol di header (contoh: SMK MUSAMBA). Kosongkan jika tidak dipakai.'),
                         TextInput::make('npsn')
                             ->label('NPSN')
                             ->maxLength(20),

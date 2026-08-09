@@ -1,5 +1,6 @@
 @php
     $siteName = $settings->site_name ?? config('app.name');
+    $siteShortName = filled($settings->site_short_name ?? null) ? $settings->site_short_name : null;
     $navItems = $primaryMenu?->rootItems ?? collect();
 
     $headerSocials = array_filter([
@@ -88,10 +89,15 @@
     <div class="border-b border-primary-900/40 bg-primary-800 text-white">
         <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between md:py-5 lg:px-8">
             <a href="{{ route('home') }}" class="group flex min-w-0 items-center gap-3.5 sm:gap-4">
-                <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteName }}"
+                <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteShortName ?? $siteName }}"
                     class="size-[3.25rem] shrink-0 drop-shadow-sm transition group-hover:opacity-95 sm:size-[4.25rem]">
                 <span class="min-w-0">
-                    <span class="line-clamp-2 font-heading text-lg font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-xl md:line-clamp-1 lg:text-[1.65rem]">{{ $siteName }}</span>
+                    @if($siteShortName)
+                        <span class="block font-heading text-lg font-bold uppercase leading-[1.1] tracking-wide text-amber-400 sm:text-xl lg:text-[1.65rem]">{{ $siteShortName }}</span>
+                        <span class="mt-1 block truncate font-heading text-sm font-semibold leading-snug text-white sm:text-base">{{ $siteName }}</span>
+                    @else
+                        <span class="line-clamp-2 font-heading text-lg font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-xl md:line-clamp-1 lg:text-[1.65rem]">{{ $siteName }}</span>
+                    @endif
                     <span class="mt-1.5 block truncate text-xs tracking-wide text-primary-100 sm:text-sm">
                         @if(filled($settings->jenjang ?? null)){{ $settings->jenjang }}@endif
                         @if(filled($settings->npsn ?? null))

@@ -38,7 +38,7 @@ class SmokeTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('SMK Muhammadiyah 1 Ambarawa')
+            ->assertSeeInOrder(['SMK MUSAMBA', 'SMK Muhammadiyah 1 Ambarawa'])
             ->assertSee('Sambutan Kepala Sekolah');
     }
 

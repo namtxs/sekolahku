@@ -66,6 +66,7 @@ class DemoContentSeeder extends Seeder
 
         $settings->fill([
             'site_name' => 'SMK Muhammadiyah 1 Ambarawa',
+            'site_short_name' => 'SMK MUSAMBA',
             'npsn' => '12345678',
             'jenjang' => 'SMK',
             'address' => 'Jl. Pendidikan No. 1, Kel. Sukamaju, Kec. Contoh, Kota Bandung, Jawa Barat 40111',
