@@ -56,6 +56,38 @@ class SmokeTest extends TestCase
         $this->assertStringNotContainsString('Jl.', $brandBand[0]);
     }
 
+    public function test_homepage_footer_has_three_columns(): void
+    {
+        $html = $this->get('/')->assertOk()->getContent();
+
+        preg_match('/<footer\b.*?<\/footer>/s', $html, $footerMatch);
+        $this->assertNotEmpty($footerMatch, 'Footer markup tidak ditemukan');
+        $footer = $footerMatch[0];
+
+        $this->assertMatchesRegularExpression(
+            '/lg:grid-cols-\[1\.4fr_1fr_1fr\]/',
+            $footer,
+            'Footer harus memakai layout 3 kolom'
+        );
+        $this->assertMatchesRegularExpression('/>\s*Tautan\s*</', $footer);
+        $this->assertMatchesRegularExpression('/>\s*Ikuti Kami\s*</', $footer);
+        $this->assertDoesNotMatchRegularExpression('/>\s*Hubungi Kami\s*</', $footer);
+        $this->assertDoesNotMatchRegularExpression('/>\s*Tags\s*</', $footer);
+
+        // Brand footer: logo stack vertikal + identitas, lalu kontak digabung di kolom kiri.
+        preg_match(
+            '/<a href="[^"]*" class="group flex flex-col gap-3">.*?<\/a>/s',
+            $footer,
+            $footerBrand
+        );
+        $this->assertNotEmpty($footerBrand, 'Footer brand stack tidak ditemukan');
+        $this->assertStringContainsString('SMK MUSAMBA', $footerBrand[0]);
+        $this->assertStringContainsString('SMK Muhammadiyah 1 Ambarawa', $footerBrand[0]);
+        $this->assertStringContainsString('Beriman, Berilmu, Berprestasi', $footerBrand[0]);
+        $this->assertStringContainsString('Jl.', $footer);
+        $this->assertStringContainsString('info@smkmusamba.sch.id', $footer);
+    }
+
     public function test_news_index_hides_unpublished_posts(): void
     {
         $this->get('/berita')

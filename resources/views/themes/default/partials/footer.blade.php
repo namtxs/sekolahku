@@ -11,59 +11,58 @@
         'YouTube' => [$settings->youtube ?? null, 'bg-[#ef4e17]', 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z'],
         'Twitter / X' => [$settings->twitter ?? null, 'bg-[#1da1f2]', 'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z'],
     ], fn ($item) => filled($item[0]));
+
+    $hasContact = filled($settings->address ?? null)
+        || filled($settings->phone ?? null)
+        || filled($settings->email ?? null);
 @endphp
 
 <footer class="border-t-[3px] border-amber-400 bg-primary-800 text-sm text-primary-100">
-    {{-- Footer utama: brand | kontak | tautan | sosial --}}
-    <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8 lg:py-12">
-        {{-- 1. Brand --}}
-        <div>
-            <a href="{{ route('home') }}" class="group inline-flex items-start gap-3">
+    {{-- Footer: brand+kontak | tautan | sosial --}}
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12 lg:px-8 lg:py-12">
+        {{-- 1. Brand + kontak --}}
+        <div class="md:col-span-2 lg:col-span-1">
+            <a href="{{ route('home') }}" class="group flex flex-col gap-3">
                 <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteShortName ?? $siteName }}"
-                    class="size-11 shrink-0 drop-shadow-sm transition group-hover:opacity-95">
-                <span class="min-w-0 space-y-1">
+                    class="size-14 shrink-0 drop-shadow-sm transition group-hover:opacity-95">
+                <span class="min-w-0">
                     @if($siteShortName)
-                        <span class="block font-heading text-sm font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteShortName }}</span>
-                        <span class="block font-heading text-xs font-semibold uppercase leading-snug tracking-wide text-white">{{ $siteName }}</span>
+                        <span class="block font-heading text-lg font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteShortName }}</span>
+                        <span class="mt-1 block font-heading text-sm font-semibold uppercase leading-snug tracking-wide text-white">{{ $siteName }}</span>
                     @else
-                        <span class="block font-heading text-sm font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteName }}</span>
+                        <span class="block font-heading text-lg font-bold uppercase leading-tight tracking-wide text-amber-400">{{ $siteName }}</span>
                     @endif
                     @if($siteTagline)
-                        <span class="block text-xs italic leading-snug text-primary-200/90">{{ $siteTagline }}</span>
+                        <span class="mt-1.5 block text-xs italic leading-relaxed text-primary-200">{{ $siteTagline }}</span>
                     @endif
                 </span>
             </a>
+
+            @if($hasContact)
+                <ul class="mt-5 space-y-3 text-sm leading-relaxed">
+                    @if(filled($settings->address ?? null))
+                        <li class="flex items-start gap-2.5">
+                            <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.112.02.31-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9.5A7 7 0 1 0 3 9.5c0 2.993 1.698 5.488 3.355 7.084a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 1.039.573l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd"/></svg>
+                            <span class="min-w-0">{{ $settings->address }}</span>
+                        </li>
+                    @endif
+                    @if(filled($settings->phone ?? null))
+                        <li class="flex items-start gap-2.5">
+                            <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd"/></svg>
+                            <a href="tel:{{ preg_replace('/\s+/', '', $settings->phone) }}" class="transition hover:text-amber-300">{{ $settings->phone }}</a>
+                        </li>
+                    @endif
+                    @if(filled($settings->email ?? null))
+                        <li class="flex items-start gap-2.5">
+                            <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
+                            <a href="mailto:{{ $settings->email }}" class="break-all transition hover:text-amber-300">{{ $settings->email }}</a>
+                        </li>
+                    @endif
+                </ul>
+            @endif
         </div>
 
-        {{-- 2. Hubungi Kami --}}
-        <div>
-            <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-sm font-bold text-white">
-                Hubungi Kami
-                <span class="absolute -bottom-0.5 left-0 w-10 border-b-2 border-white" aria-hidden="true"></span>
-            </h3>
-            <ul class="space-y-3 text-sm leading-relaxed">
-                @if(filled($settings->address ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="m9.69 18.933.003.001C9.89 19.02 10 19 10 19s.112.02.31-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 0 0 .281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9.5A7 7 0 1 0 3 9.5c0 2.993 1.698 5.488 3.355 7.084a13.731 13.731 0 0 0 2.273 1.765 11.842 11.842 0 0 0 1.039.573l.018.008.006.003ZM10 11.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" clip-rule="evenodd"/></svg>
-                        <span class="min-w-0">{{ $settings->address }}</span>
-                    </li>
-                @endif
-                @if(filled($settings->phone ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd"/></svg>
-                        <a href="tel:{{ preg_replace('/\s+/', '', $settings->phone) }}" class="transition hover:text-amber-300">{{ $settings->phone }}</a>
-                    </li>
-                @endif
-                @if(filled($settings->email ?? null))
-                    <li class="flex items-start gap-2.5">
-                        <svg class="mt-0.5 size-4 shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
-                        <a href="mailto:{{ $settings->email }}" class="break-all transition hover:text-amber-300">{{ $settings->email }}</a>
-                    </li>
-                @endif
-            </ul>
-        </div>
-
-        {{-- 3. Tautan --}}
+        {{-- 2. Tautan --}}
         <div>
             <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-sm font-bold text-white">
                 Tautan
@@ -87,14 +86,14 @@
             </ul>
         </div>
 
-        {{-- 4. Ikuti Kami --}}
+        {{-- 3. Ikuti Kami --}}
         <div>
             <h3 class="relative mb-4 border-b-2 border-amber-400 pb-2 font-heading text-sm font-bold text-white">
                 Ikuti Kami
                 <span class="absolute -bottom-0.5 left-0 w-10 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
             @if($footerSocials !== [])
-                <div class="flex flex-nowrap gap-2">
+                <div class="flex flex-wrap gap-2">
                     @foreach($footerSocials as $label => [$url, $bg, $path])
                         <a href="{{ $url }}" target="_blank" rel="noopener" aria-label="{{ $label }}" title="{{ $label }}"
                             class="{{ $bg }} flex size-9 shrink-0 items-center justify-center rounded-full text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90">
