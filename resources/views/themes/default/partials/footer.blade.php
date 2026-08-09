@@ -1,5 +1,8 @@
 @php
     $siteName = $settings->site_name ?? config('app.name');
+    $siteShortName = filled($settings->site_short_name ?? null) ? $settings->site_short_name : null;
+    $siteTagline = filled($settings->site_tagline ?? null) ? $settings->site_tagline : null;
+    $footerLinks = $footerMenu?->rootItems ?? collect();
 
     // Ikon sosial bulat berwarna khas website sekolah (warna brand masing-masing).
     $footerSocials = array_filter([
@@ -11,25 +14,34 @@
 @endphp
 
 <footer class="border-t-[3px] border-amber-400 bg-primary-800 text-sm text-primary-100">
-    {{-- Footer utama: 3 kolom ala website sekolah --}}
-    <div class="mx-auto grid max-w-6xl gap-x-12 gap-y-10 px-4 py-11 sm:px-6 md:grid-cols-3 lg:px-8 lg:py-12">
-        {{-- Hubungi Kami --}}
+    {{-- Footer utama: brand | kontak | tautan | sosial (4 kolom di lg) --}}
+    <div class="mx-auto grid max-w-6xl gap-x-10 gap-y-10 px-4 py-11 sm:px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:px-8 lg:py-12">
+        {{-- 1. Brand: logo + nama pendek + nama lengkap + tagline --}}
+        <div class="sm:col-span-2 lg:col-span-1">
+            <a href="{{ route('home') }}" class="group inline-flex items-start gap-3.5">
+                <img src="{{ asset('images/logo.svg') }}" alt="Logo {{ $siteShortName ?? $siteName }}"
+                    class="size-14 shrink-0 drop-shadow-sm transition group-hover:opacity-95 sm:size-16">
+                <span class="min-w-0 pt-0.5">
+                    @if($siteShortName)
+                        <span class="block font-heading text-base font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-lg">{{ $siteShortName }}</span>
+                        <span class="mt-1 block font-heading text-sm font-semibold uppercase leading-snug tracking-wide text-white">{{ $siteName }}</span>
+                    @else
+                        <span class="block font-heading text-base font-bold uppercase leading-[1.15] tracking-wide text-amber-400 sm:text-lg">{{ $siteName }}</span>
+                    @endif
+                    @if($siteTagline)
+                        <span class="mt-1.5 block text-xs italic leading-snug text-primary-200/90 sm:text-[13px]">{{ $siteTagline }}</span>
+                    @endif
+                </span>
+            </a>
+        </div>
+
+        {{-- 2. Hubungi Kami --}}
         <div>
             <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
                 Hubungi Kami
                 <span class="absolute -bottom-0.5 left-0 w-12 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
-            <p class="font-heading text-[15px] font-semibold leading-snug text-white">{{ $siteName }}</p>
-            @if(filled($settings->jenjang ?? null) || filled($settings->npsn ?? null))
-                <p class="mt-1 text-xs leading-relaxed text-primary-200">
-                    @if(filled($settings->jenjang ?? null)){{ $settings->jenjang }}@endif
-                    @if(filled($settings->npsn ?? null))
-                        @if(filled($settings->jenjang ?? null)) <span aria-hidden="true">&sdot;</span> @endif
-                        NPSN {{ $settings->npsn }}
-                    @endif
-                </p>
-            @endif
-            <ul class="mt-5 space-y-3.5 leading-relaxed">
+            <ul class="space-y-3.5 leading-relaxed">
                 @if(filled($settings->address ?? null))
                     <li class="flex items-start gap-3">
                         <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-sm bg-primary-900/50 text-amber-400">
@@ -57,27 +69,35 @@
             </ul>
         </div>
 
-        {{-- Tags --}}
+        {{-- 3. Tautan (menu footer) --}}
         <div>
             <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
-                Tags
+                Tautan
                 <span class="absolute -bottom-0.5 left-0 w-12 border-b-2 border-white" aria-hidden="true"></span>
             </h3>
-            @if(! empty($footerTags))
-                <div class="flex flex-wrap gap-2">
-                    @foreach($footerTags as $tag)
-                        <a href="{{ $tag['url'] }}"
-                            class="rounded-sm border border-white/25 bg-primary-900/25 px-2.5 py-1.5 text-[11px] font-medium uppercase leading-none tracking-wide text-primary-100 transition hover:border-amber-400 hover:bg-primary-900/50 hover:text-amber-300">
-                            {{ $tag['name'] }}
-                        </a>
+            @if($footerLinks->isNotEmpty())
+                <ul class="space-y-2.5">
+                    @foreach($footerLinks as $item)
+                        <li>
+                            <a href="{{ $item->resolvedUrl() }}" @if($item->target) target="{{ $item->target }}" @endif
+                                class="inline-flex items-center gap-2 transition hover:text-amber-300">
+                                <span class="text-amber-400" aria-hidden="true">&rsaquo;</span>
+                                {{ $item->title }}
+                            </a>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
             @else
-                <p class="text-primary-200">Belum ada tag.</p>
+                <ul class="space-y-2.5">
+                    <li><a href="{{ route('home') }}" class="inline-flex items-center gap-2 transition hover:text-amber-300"><span class="text-amber-400" aria-hidden="true">&rsaquo;</span> Beranda</a></li>
+                    <li><a href="{{ route('posts.index') }}" class="inline-flex items-center gap-2 transition hover:text-amber-300"><span class="text-amber-400" aria-hidden="true">&rsaquo;</span> Berita</a></li>
+                    <li><a href="{{ route('contact.show') }}" class="inline-flex items-center gap-2 transition hover:text-amber-300"><span class="text-amber-400" aria-hidden="true">&rsaquo;</span> Kontak</a></li>
+                    <li><a href="{{ route('ppdb.index') }}" class="inline-flex items-center gap-2 transition hover:text-amber-300"><span class="text-amber-400" aria-hidden="true">&rsaquo;</span> PPDB</a></li>
+                </ul>
             @endif
         </div>
 
-        {{-- Ikuti Kami --}}
+        {{-- 4. Ikuti Kami (+ Tags jika ada) --}}
         <div>
             <h3 class="relative mb-5 border-b-2 border-amber-400 pb-2.5 font-heading text-base font-bold text-white">
                 Ikuti Kami
@@ -92,9 +112,22 @@
                         </a>
                     @endforeach
                 </div>
-                <p class="mt-4 text-xs leading-relaxed text-primary-200">Ikuti update kegiatan dan pengumuman sekolah di media sosial resmi kami.</p>
             @else
                 <p class="text-primary-200">Media sosial belum diatur.</p>
+            @endif
+
+            @if(! empty($footerTags))
+                <div class="mt-7">
+                    <h4 class="mb-3 text-xs font-bold uppercase tracking-wide text-amber-400">Tags</h4>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach($footerTags as $tag)
+                            <a href="{{ $tag['url'] }}"
+                                class="rounded-sm border border-white/25 bg-primary-900/25 px-2.5 py-1.5 text-[11px] font-medium uppercase leading-none tracking-wide text-primary-100 transition hover:border-amber-400 hover:bg-primary-900/50 hover:text-amber-300">
+                                {{ $tag['name'] }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
             @endif
         </div>
     </div>
